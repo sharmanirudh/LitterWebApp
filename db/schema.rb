@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20170629092626) do
 
   create_table "follower_mappings", force: :cascade do |t|
     t.string   "follower_id"
-    t.string   "integer"
     t.string   "followee_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
