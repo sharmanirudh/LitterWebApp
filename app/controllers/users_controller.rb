@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   end
 
   def profile
+    render :layout => false
     @user = User.find(session[:user_id])
     followers = @user.follower
     @tweets = []
