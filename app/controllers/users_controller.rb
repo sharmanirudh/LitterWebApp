@@ -15,13 +15,29 @@ class UsersController < ApplicationController
 
   def find
     @user = User.find(session[:user_id])
-    @tweets = Tweet.all
+    @avatars = {:Boy => "boy.png", :Boy_1 => "boy-1.png", :Girl => "girl.png", :Girl_1 => "girl-1.png", :Man => "man.png", :Man_1 => "man-1.png", :Man_2 => "man-2.png", :Man_3 => "man-3.png", :Man_4 => "man-4.png", :User => "user.png", :People => "people.png", :Profession => "profession.png"}
+    (1..11).each do |i|
+      key = "User_" + i.to_s
+      value = "user-" + i.to_s + ".png"
+      @avatars[key.to_sym] = value
+    end
+    (1..23).each do |i|
+      key = "People_" + i.to_s
+      value = "people-" + i.to_s + ".png"
+      @avatars[key.to_sym] = value
+    end
+    (1..49).each do |i|
+      key = "Profession_" + i.to_s
+      value = "profession-" + i.to_s + ".png"
+      @avatars[key.to_sym] = value
+    end
+    render :layout => "profile.html.erb"
   end
 
   def profile
     @user = User.find(session[:user_id])
     followers = @user.follower
-    @tweets = []
+    
     @avatars = {:Boy => "boy.png", :Boy_1 => "boy-1.png", :Girl => "girl.png", :Girl_1 => "girl-1.png", :Man => "man.png", :Man_1 => "man-1.png", :Man_2 => "man-2.png", :Man_3 => "man-3.png", :Man_4 => "man-4.png", :User => "user.png", :People => "people.png", :Profession => "profession.png"}
     (1..11).each do |i|
       key = "User_" + i.to_s
@@ -39,6 +55,7 @@ class UsersController < ApplicationController
       @avatars[key.to_sym] = value
     end
 
+    @tweets = []
     followers.each do |follower|
       @tweets << Tweet.where(user_id: follower.id).first
     end
