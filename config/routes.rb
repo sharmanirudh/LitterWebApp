@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   post 'users/avatar'
 
-  post '/users/followermapping'
+  post 'users/status'
+
+  post 'users/followermapping'
 
   post 'tweets/tweet'
 

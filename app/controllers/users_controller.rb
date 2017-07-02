@@ -118,15 +118,17 @@ class UsersController < ApplicationController
     return redirect_to '/users/profile'
   end
 
+  def status
+    user = User.find(session[:user_id])
+    user.status = params["status"]
+    user.save
+    return redirect_to '/users/profile'
+  end
+
   def followermapping
     followee_id = params["followee_id"]
     follower_id = params["follower_id"]
     follower = FollowerMapping.where(follower_id: follower_id , followee_id: followee_id).first
-    # puts "=============================================#{user_id}"
-    # puts "=============================================#{session[:user_id]}"
-    # puts "=============================================#{tweet_id}"
-    # puts "=============================================#{like.user_id}"
-    # puts "=============================================#{like.tweet_id}"
     if follower
       follower.destroy
     else

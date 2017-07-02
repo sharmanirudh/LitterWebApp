@@ -70,10 +70,14 @@
 	    </div>
 	    <div class="card-reveal">
 	      <span class="card-title grey-text text-darken-4">Status<i class="material-icons right">close</i></span>
-	      <p><%= @user.status %></p>
-	      <a class="btn-floating btn-medium red right">
-	      	<i class="large material-icons">mode_edit</i>
-		    </a>
+	      <form action="/users/status" method="post">
+					<div class="input-field">
+				    <textarea type="text" class="materialize-textarea" name="status"><%= @user.status %></textarea>
+				    <button class="btn-floating red right" type="submit">
+			  			<i class="large material-icons">mode_edit</i>
+						</button>
+				  </div>
+				</form>
 	    </div>
 	  </div>
   </div>
@@ -96,8 +100,6 @@
 			  			<i class="material-icons right">send</i>
 						</button>
 				  </div>
-					<!-- <input placeholder="Tweet" type="text" name="content" /> -->
-					<!-- <input type="submit" value="Tweet" /> -->
 				</form>
 			</div>
 		</div>
