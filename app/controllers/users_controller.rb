@@ -57,7 +57,9 @@ class UsersController < ApplicationController
 
     @tweets = []
     followers.each do |follower|
-      @tweets << Tweet.where(user_id: follower.id)
+      follower.tweets.each do |tweet|
+        @tweets << tweet
+      end
     end
     @user.tweets.each do |tweet|
       @tweets << tweet
